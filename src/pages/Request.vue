@@ -21,44 +21,64 @@
       <div class="grid md:grid-cols-2 gap-4">
         <div>
           <label class="text-sm">Nama Lengkap *</label>
-          <input class="mt-1 input" placeholder="Nama Pemohon" />
+          <input class="mt-1 input" placeholder="Nama Pemohon" v-model="nama" />
         </div>
+
         <div>
           <label class="text-sm">Golongan Darah yang Dibutuhkan *</label>
-          <select class="mt-1 input">
+          <select class="mt-1 input" v-model="golongan">
+            <option value="">-- Pilih --</option>
             <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
             <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
           </select>
         </div>
+
         <div>
           <label class="text-sm">Nomor Telepon *</label>
-          <input class="mt-1 input" placeholder="08xx xxxx xxxx" />
+          <input class="mt-1 input" placeholder="08xx xxxx xxxx" v-model="telp" />
         </div>
+
         <div>
           <label class="text-sm">Email *</label>
-          <input class="mt-1 input" type="email" placeholder="email@kampus.id" />
+          <input class="mt-1 input" type="email" placeholder="email@kampus.id" v-model="email" />
         </div>
+
         <div>
           <label class="text-sm">Tanggal Dibutuhkan *</label>
-          <input class="mt-1 input" type="date" />
+          <input class="mt-1 input" type="date" v-model="tanggal" />
         </div>
+
         <div>
           <label class="text-sm">Tingkat Urgensi *</label>
-          <select class="mt-1 input">
-            <option>Normal</option><option>Segera</option><option>Darurat</option>
+          <select class="mt-1 input" v-model="urgensi">
+            <option value="">-- Pilih --</option>
+            <option>Normal</option>
+            <option>Segera</option>
+            <option>Darurat</option>
           </select>
         </div>
       </div>
+
       <div>
         <label class="text-sm">Keterangan Tambahan</label>
-        <textarea class="mt-1 input" rows="4" placeholder="Detail kondisi atau kebutuhan..."></textarea>
+        <textarea 
+          class="mt-1 input" rows="4" 
+          placeholder="Detail kondisi atau kebutuhan..."
+          v-model="keterangan"
+        ></textarea>
       </div>
 
       <p class="text-xs text-blue-700 bg-blue-50 border border-blue-200 p-3 rounded">
         <b>Catatan:</b> Pastikan data yang Anda masukkan benar. Tim kami akan menghubungi Anda untuk verifikasi.
       </p>
 
-      <button type="button" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Kirim Permintaan</button>
+      <button 
+        type="button"
+        @click="submitForm"
+        class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+      >
+        Kirim Permintaan
+      </button>
     </form>
 
     <div class="mt-6 rounded-xl border p-4 flex items-center justify-between">
@@ -71,12 +91,72 @@
       </div>
       <a href="tel:05421234567" class="px-4 py-2 rounded-lg bg-red-600 text-white">0542-123-4567</a>
     </div>
+
+    <!-- TOAST NOTIFIKASI -->
+    <div 
+      v-if="showToast"
+      :class="[
+        'fixed bottom-6 right-6 px-4 py-3 rounded-lg shadow-lg animate-fade',
+        toastType === 'error' ? 'bg-red-600 text-white' : 'bg-green-600 text-white'
+      ]"
+    >
+      {{ toastMessage }}
+    </div>
+
   </section>
 </template>
 
 <script setup>
+import { ref } from "vue";
+
+// toast state
+const showToast = ref(false);
+const toastMessage = ref("");
+const toastType = ref("success"); // success | error
+
+// form values
+const nama = ref("");
+const golongan = ref("");
+const telp = ref("");
+const email = ref("");
+const tanggal = ref("");
+const urgensi = ref("");
+const keterangan = ref("");
+
+function showNotification(message, type = "success") {
+  toastMessage.value = message;
+  toastType.value = type;
+  showToast.value = true;
+
+  setTimeout(() => {
+    showToast.value = false;
+  }, 3000);
+}
+
+function submitForm() {
+  if (
+    !nama.value ||
+    !golongan.value ||
+    !telp.value ||
+    !email.value ||
+    !tanggal.value ||
+    !urgensi.value
+  ) {
+    return showNotification("Harap isi semua field yang wajib!", "error");
+  }
+
+  showNotification("Permintaan darah berhasil dikirim!", "success");
+}
 </script>
 
 <style scoped>
-.input { @apply w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-300; }
+.input { 
+  @apply w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-300; 
+}
+
+@keyframes fade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade { animation: fade 0.3s ease-out; }
 </style>

@@ -13,21 +13,31 @@
       <form class="rounded-2xl border p-6 grid gap-4 bg-white">
         <div>
           <label class="text-sm">Nama Lengkap *</label>
-          <input class="input mt-1" placeholder="Nama Anda" />
+          <input class="input mt-1" placeholder="Nama Anda" v-model="nama" />
         </div>
+
         <div>
           <label class="text-sm">Email *</label>
-          <input class="input mt-1" type="email" placeholder="email@kampus.id" />
+          <input class="input mt-1" type="email" placeholder="email@kampus.id" v-model="email" />
         </div>
+
         <div>
           <label class="text-sm">Subjek *</label>
-          <input class="input mt-1" placeholder="Perihal pesan" />
+          <input class="input mt-1" placeholder="Perihal pesan" v-model="subjek" />
         </div>
+
         <div>
           <label class="text-sm">Pesan *</label>
-          <textarea class="input mt-1" rows="5" placeholder="Tulis pesan Anda..."></textarea>
+          <textarea class="input mt-1" rows="5" placeholder="Tulis pesan Anda..." v-model="pesan"></textarea>
         </div>
-        <button class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700">Kirim Pesan</button>
+
+        <button 
+          type="button"
+          @click="submitForm"
+          class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+        >
+          Kirim Pesan
+        </button>
       </form>
 
       <div class="rounded-2xl border p-4 sm:p-6 bg-gradient-to-br from-red-50 to-blue-50 flex items-center justify-center">
@@ -36,10 +46,8 @@
           width="100%"
           height="350"
           style="border:0;"
-          allowfullscreen=""
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        ></iframe>
       </div>
     </div>
 
@@ -70,15 +78,70 @@
         </ul>
       </div>
     </div>
+
+    <!-- TOAST -->
+    <div 
+      v-if="showToast"
+      :class="[
+        'fixed bottom-6 right-6 px-4 py-3 rounded-lg shadow-lg animate-fade',
+        toastType === 'error' ? 'bg-red-600 text-white' : 'bg-green-600 text-white'
+      ]"
+    >
+      {{ toastMessage }}
+    </div>
+
   </section>
 </template>
 
 <script setup>
-const Info = (props) => null
+import { ref } from "vue";
+
+const Info = (props) => null;
+
+// form values
+const nama = ref("");
+const email = ref("");
+const subjek = ref("");
+const pesan = ref("");
+
+// toast states
+const showToast = ref(false);
+const toastMessage = ref("");
+const toastType = ref("success"); // success | error
+
+function notify(msg, type = "success") {
+  toastMessage.value = msg;
+  toastType.value = type;
+  showToast.value = true;
+
+  setTimeout(() => showToast.value = false, 3000);
+}
+
+function submitForm() {
+  if (!nama.value || !email.value || !subjek.value || !pesan.value) {
+    return notify("Harap isi semua field yang wajib!", "error");
+  }
+
+  notify("Pesan berhasil dikirim!", "success");
+
+  // optional: reset form
+  nama.value = "";
+  email.value = "";
+  subjek.value = "";
+  pesan.value = "";
+}
 </script>
 
 <style scoped>
 .input {
   @apply w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-300;
+}
+
+@keyframes fade {
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade {
+  animation: fade 0.3s ease-out;
 }
 </style>

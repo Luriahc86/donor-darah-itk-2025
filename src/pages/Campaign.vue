@@ -9,11 +9,12 @@
       <SummaryCard label="Total Peserta" value="1069" color="bg-gray-50"/>
     </div>
 
+    <!-- FILTER BUTTONS -->
     <div class="flex gap-2 mb-6">
-      <button class="px-3 py-1 rounded-lg border bg-black/5">Semua Event</button>
-      <button class="px-3 py-1 rounded-lg border">Akan Datang</button>
-      <button class="px-3 py-1 rounded-lg border">Berlangsung</button>
-      <button class="px-3 py-1 rounded-lg border">Selesai</button>
+      <button class="filter-btn">Semua Event</button>
+      <button class="filter-btn">Akan Datang</button>
+      <button class="filter-btn">Berlangsung</button>
+      <button class="filter-btn">Selesai</button>
     </div>
 
     <h3 class="font-semibold mb-3">Sedang Berlangsung</h3>
@@ -29,14 +30,39 @@
 
     <h3 class="font-semibold mb-3">Akan Datang</h3>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <EventCard status="Akan Datang" title="Donor Darah RS Pendidikan" date="25 Okt 2025 • 08:00 - 14:00" place="RS Pendidikan" peserta="45" />
-      <EventCard status="Akan Datang" title="Event Donor ITK" date="28 Okt 2025 • 09:00 - 15:00" place="Institut Teknologi" peserta="78" />
-      <EventCard status="Akan Datang" title="Donor Mobile - Plaza Kampus" date="1 Nov 2025 • 10:00 - 16:00" place="Plaza Kampus" peserta="32" />
+      <EventCard
+        status="Akan Datang"
+        title="Donor Darah RS Pendidikan"
+        date="25 Okt 2025 • 08:00 - 14:00"
+        place="RS Pendidikan"
+        peserta="45"
+      />
+      <EventCard
+        status="Akan Datang"
+        title="Event Donor ITK"
+        date="28 Okt 2025 • 09:00 - 15:00"
+        place="Institut Teknologi"
+        peserta="78"
+      />
+      <EventCard
+        status="Akan Datang"
+        title="Donor Mobile - Plaza Kampus"
+        date="1 Nov 2025 • 10:00 - 16:00"
+        place="Plaza Kampus"
+        peserta="32"
+      />
     </div>
 
     <div class="mt-10 rounded-2xl p-8 text-center text-white bg-gradient-to-r from-red-600 to-red-500">
       <p class="mb-3">Tidak menemukan event yang sesuai?</p>
-      <button class="px-4 py-2 rounded-lg bg-white text-red-600">Hubungi Panitia Kampus</button>
+
+      <!-- BUTTON MAILTO -->
+      <a
+        href="mailto:info@donorkampus.id?subject=Konsultasi%20Event%20Donor%20Darah&body=Halo%20Panitia%20Kampanye%20Donor%20Darah%2C%0D%0A%0D%0ASaya%20ingin%20bertanya%20mengenai%20event%20donor..."
+        class="inline-block px-4 py-2 rounded-lg bg-white text-red-600 hover:bg-red-50"
+      >
+        Hubungi Panitia Kampus
+      </a>
     </div>
   </section>
 </template>
@@ -45,3 +71,10 @@
 const SummaryCard = (props) => null
 const EventCard = (props) => null
 </script>
+
+<style scoped>
+/* Semua tombol filter menggunakan gaya yang konsisten */
+.filter-btn {
+  @apply px-3 py-1 rounded-lg border bg-white text-gray-800 hover:bg-gray-100 transition;
+}
+</style>
