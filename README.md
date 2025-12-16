@@ -1,5 +1,49 @@
-# Vue 3 + Vite
+# 🩸 Donor Darah ITK
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Aplikasi web untuk manajemen donor darah di Institut Teknologi Kalimantan.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/Donor-Darah-ITK)
+
+## 🚀 Tech Stack
+
+- **Vue 3** - Progressive JavaScript Framework
+- **Vite** - Next Generation Frontend Tooling
+- **Vue Router** - Official Router for Vue.js
+- **Tailwind CSS** - Utility-first CSS Framework
+- **Lucide Icons** - Beautiful & consistent icon toolkit
+
+## 📦 Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 🌐 Deployment
+
+Lihat panduan lengkap deployment di [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Quick Deploy ke Vercel
+
+1. Push kode ke GitHub/GitLab/Bitbucket
+2. Import project di [vercel.com](https://vercel.com)
+3. Deploy!
+
+Atau gunakan Vercel CLI:
+```bash
+npm install -g vercel
+vercel --prod
+```
+
+## 📄 License
+
+MIT
