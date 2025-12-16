@@ -20,7 +20,7 @@
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">
      <div data-aos="fade-left">
       <img
-        src="../assets/kampanye_2.jpeg"
+        :src="kampanyeImage2"
         alt="Tentang Kami"
         class="rounded-2xl w-full h-[320px] object-cover shadow-lg hover:scale-105 transition-transform duration-500"
       />
@@ -31,14 +31,14 @@
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <div data-aos="fade-left">
       <img
-        src="../assets/kampanye.jpeg"
+        :src="kampanyeImage"
         alt="Tentang Kami"
         class="rounded-2xl w-full h-[320px] object-cover shadow-lg hover:scale-105 transition-transform duration-500"
       />
     </div>
       <div data-aos="fade-left">
       <img
-        src="../assets/kampanye_2.jpeg"
+        :src="kampanyeImage2"
         alt="Tentang Kami"
         class="rounded-2xl w-full h-[320px] object-cover shadow-lg hover:scale-105 transition-transform duration-500"
       />
@@ -60,6 +60,9 @@
 </template>
 
 <script setup>
+import kampanyeImage from '../assets/kampanye.jpeg';
+import kampanyeImage2 from '../assets/kampanye_2.jpeg';
+
 const SummaryCard = (props) => null
 const EventCard = (props) => null
 </script>

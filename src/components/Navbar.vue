@@ -3,7 +3,7 @@
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <RouterLink to="/" class="flex items-center gap-2">
        <img
-        src="../assets/logo.png"
+        :src="logoImage"
         class="rounded-2xl w-full h-[60px]"
       />
       </RouterLink>
@@ -53,6 +53,8 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import logoImage from '../assets/logo.png';
+
 const open = ref(false)
 const close = () => (open.value = false)
 </script>

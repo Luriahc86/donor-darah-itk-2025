@@ -16,7 +16,7 @@
 
     <div data-aos="fade-left">
       <img
-        src="../assets/about-author.jpg"
+        :src="authorImage"
         alt="Tentang Kami"
         class="rounded-2xl w-full h-[320px] object-cover shadow-lg hover:scale-105 transition-transform duration-500"
       />
@@ -61,6 +61,8 @@
 </template>
 
 <script setup>
+import authorImage from '../assets/about-author.jpg';
+
 const values = [
   {
     title: "UI/UI Design",

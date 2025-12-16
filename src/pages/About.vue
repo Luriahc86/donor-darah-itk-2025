@@ -21,7 +21,7 @@
 
     <div data-aos="fade-left">
       <img
-        src="../assets/about-image.jpg"
+        :src="aboutImage"
         alt="Tentang Kami"
         class="rounded-2xl w-full h-[320px] object-cover shadow-lg hover:scale-105 transition-transform duration-500"
       />
@@ -99,6 +99,8 @@
 </template>
 
 <script setup>
+import aboutImage from '../assets/about-image.jpg';
+
 const values = [
   {
     icon: "❤️",
